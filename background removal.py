@@ -44,7 +44,7 @@ while True:
         foreground = cv2.bitwise_and(frame, frame, mask=inverted_mask)
 
         # final image
-        final_image = cv2.bitwise_or(foreground, mountain)
+        final_image = np.where(foreground == 0, mountain, foreground)
 
         # show it
         cv2.imshow('frame' , final_image)
@@ -57,3 +57,4 @@ while True:
 # release the camera and close all opened windows
 camera.release()
 cv2.destroyAllWindows()
+
